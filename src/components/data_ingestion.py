@@ -3,6 +3,9 @@ import os
 import sys
 # from src.exception import CustomException
 import pandas as pd
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationconfig
+from src.components.Model_trainer import ModelTrainer
 
 def error_message_detail(error,error_detail:sys):
     _,_,exc_tb=error_detail.exc_info()
@@ -65,3 +68,9 @@ class DataIngestion:
 if __name__=="__main__":
     obj=DataIngestion()
     obj.initiate_data_ingestion()
+
+    data_transformation=DataTransformation()
+    train_arr,test_arr,_=data_transformation.initiate_data_transformation()
+
+    modeltrainer=ModelTrainer()
+    print(modeltrainer.Initiate_model_trainer(train_arr,test_arr))
